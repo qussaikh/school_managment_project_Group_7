@@ -31,5 +31,4 @@ public class Course {
     @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Student> students;
-
 }
