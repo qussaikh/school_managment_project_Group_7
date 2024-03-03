@@ -11,12 +11,12 @@ Creates a new Admin and returns the new object.
 Content-Type: application/json
 * Data Params
 
-_{
+{
 "firstname": "Qussai",
 "lastname": "Khalil",
 "email":  "qussai@mail.com",
 "password": "password"
-}_
+}
 
 ### Register User
 Creates a new User and returns the new object.
@@ -73,7 +73,7 @@ Creates a new User and returns the new object.
 "dept": "java spring JPA dev "
 }
 
-### Add Course
+### Add course
 * URL Params
   POST http://localhost:8080/course/save
 * Headers
@@ -87,7 +87,7 @@ Creates a new User and returns the new object.
 "fee": 3000
 }
 
-### assign course to student
+### Assign course to student
 * URL Params
   PUT http://localhost:8080/student/{stuId}/course/{courseId}
 * Headers
@@ -96,44 +96,67 @@ Creates a new User and returns the new object.
   none 
 
 
-### get Student details
+### Get Student details
 * URL Params
   GET http://localhost:8080/student/getStudent/{stuId}
 * Headers
   Content-Type: application/json
 * Data Params
 
-### get all Students
+{
+"studentId": 1,
+"name": "Mousa",
+"age": 33,
+"dept": "java spring JPA dev ",
+"courses": []
+}
+
+
+### Get all Students
 * URL Params
   GET http://localhost:8080/student/getStudents
 * Headers
   Content-Type: application/json
 * Data Params
 
-### Delete Student 
+### Update student
 * URL Params
-  GET http://localhost:8080/student/delete/{stuId}
+  PUT http://localhost:8080/student/update/{stuId}
 * Headers
   Content-Type: application/json
 * Data Params
 
-### get Course by id
+### Delete Student 
+* URL Params
+  DELETE http://localhost:8080/student/delete/{stuId}
+* Headers
+  Content-Type: application/json
+* Data Params
+
+### Get course by id
 * URL Params
   GET http://localhost:8080/course/getCourse/{courseId}
 * Headers
   Content-Type: application/json
 * Data Params
 
-### get all Courses
+### Get all Courses
 * URL Params
   GET http://localhost:8080/course/getCourses
 * Headers
   Content-Type: application/json
 * Data Params
 
+### Update course
+* URL Params
+  PUT http://localhost:8080/course/update/{courseId}
+* Headers
+  Content-Type: application/json
+* Data Params
+
 ### Delete course
 * URL Params
-  GET http://localhost:8080/course/delete/{courseId}
+  DELETE http://localhost:8080/course/delete/{courseId}
 * Headers
   Content-Type: application/json
 * Data Params

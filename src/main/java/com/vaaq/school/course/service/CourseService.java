@@ -26,6 +26,18 @@ public class CourseService {
         }
     }
 
+    public Course updateCourse(Long courseId, Course updatedCourse) {
+        Course existingCourse = courseRepository.findById(courseId).orElse(null);
+        if (existingCourse != null) {
+            existingCourse.setTitle(updatedCourse.getTitle());
+            existingCourse.setAbbreviation(updatedCourse.getAbbreviation());
+            existingCourse.setModules(updatedCourse.getModules());
+            existingCourse.setFee(updatedCourse.getFee());
+            return courseRepository.save(existingCourse);
+        }
+        return null;
+    }
+
     public void deleteCourse(Long CourseId) {
         courseRepository.deleteById(CourseId);
     }
