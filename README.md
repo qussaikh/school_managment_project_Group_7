@@ -108,7 +108,7 @@ Creates a new User and returns the new object.
 "name": "Mousa",
 "age": 33,
 "dept": "java spring JPA dev ",
-"courses": []
+"courses": 1
 }
 
 
