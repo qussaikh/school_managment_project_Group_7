@@ -38,4 +38,18 @@ public class CourseController {
         courseService.deleteCourse(courseId);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @PutMapping("/update/{courseId}")
+    public ResponseEntity<Course> updateCourse(
+            @PathVariable Long courseId,
+            @RequestBody Course updatedCourse
+    ) {
+        Course course = courseService.updateCourse(courseId, updatedCourse);
+        if (course != null) {
+            return new ResponseEntity<>(course, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
