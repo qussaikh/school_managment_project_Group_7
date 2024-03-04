@@ -1,4 +1,4 @@
-FROM eclipse-temurin:20-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 COPY target/spring-boot-docker.jar spring-boot-docker.jar
 EXPOSE 8080
