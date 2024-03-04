@@ -20,7 +20,7 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
-        run: docker build -t 02ahmalh/springboot-exmpel1 .
+        run: docker build -t 02ahmalh/springboot-exmpel1.
       - name: Publish image to docker hub
         run: docker push 02ahmalh/springboot-exmpel1:latest
 
