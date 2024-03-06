@@ -47,8 +47,22 @@ public class StudentService {
     }
 
     public void deleteStudent(Long studentId) {
-        studentRepository.deleteById(studentId);
+        Optional<Student> optionalStudent = studentRepository.findById(studentId);
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+            // Ta bort studentens referenser från alla kurser den är registrerad på
+            for (Course course : student.getCourses()) {
+                course.getStudents().remove(student);
+                courseRepository.save(course);
+            }
+            // Ta bort studentens referenser från student_course_table
+            student.getCourses().clear();
+            studentRepository.save(student);
+            // Ta bort studenten
+            studentRepository.deleteById(studentId);
+        }
     }
+
 
     public Student assignCourseToStudent(Long stdId, Long courseId) {
         Set<Course> courseSet = null;

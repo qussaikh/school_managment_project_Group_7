@@ -54,7 +54,7 @@ public class SecurityConfiguration {
                                 .permitAll()
                                 .requestMatchers(POST, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(PATCH, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
-                                .requestMatchers(PUT, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
+                                .requestMatchers(PUT, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(DELETE, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(POST, "/api/v1/auth/**").hasRole(Role.ADMIN.name())
 

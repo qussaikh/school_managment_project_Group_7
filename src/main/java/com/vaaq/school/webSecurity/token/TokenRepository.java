@@ -1,5 +1,6 @@
 package com.vaaq.school.webSecurity.token;
 
+import com.vaaq.school.webSecurity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -20,4 +21,6 @@ public interface TokenRepository extends JpaRepository<Token, Integer> {
 
   // Custom query to find a token by its token string.
   Optional<Token> findByToken(String token);
+
+  void deleteByUser(User user);
 }

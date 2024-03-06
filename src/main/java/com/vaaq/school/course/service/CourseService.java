@@ -3,7 +3,10 @@ package com.vaaq.school.course.service;
 
 import com.vaaq.school.course.entity.Course;
 import com.vaaq.school.course.repository.CourseRepository;
+import com.vaaq.school.student.entity.Student;
+import com.vaaq.school.student.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +16,9 @@ public class CourseService {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     public void saveCourse(Course courseObj) {
         courseRepository.save(courseObj);
@@ -38,9 +44,18 @@ public class CourseService {
         return null;
     }
 
-    public void deleteCourse(Long CourseId) {
-        courseRepository.deleteById(CourseId);
+    public void deleteCourse(Long courseId) {
+        Course course = courseRepository.findById(courseId).orElse(null);
+        if (course != null) {
+            if (course.getStudents().isEmpty()) {
+                courseRepository.deleteById(courseId);
+            } else {
+                throw new RuntimeException("Kan inte ta bort kursen eftersom det finns kopplade studenter.");
+            }
+        }
     }
+
+
 
     public List<Course> getAllCourse() {
         return courseRepository.findAll();

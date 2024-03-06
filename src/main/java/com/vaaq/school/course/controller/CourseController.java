@@ -35,8 +35,12 @@ public class CourseController {
 
     @DeleteMapping("/delete/{courseId}")
     public ResponseEntity removeProject(@PathVariable Long courseId) {
-        courseService.deleteCourse(courseId);
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            courseService.deleteCourse(courseId);
+            return new ResponseEntity<>("Kursen har tagits bort", HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>("Kan inte ta bort kursen eftersom det finns kopplade studenter", HttpStatus.OK);
+        }
     }
 
     @PutMapping("/update/{courseId}")
