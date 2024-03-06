@@ -101,7 +101,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>spring-boot-docker</finalName>
+		<finalName>schoolManegment-app</finalName>
 	</build>
 
 </project>
