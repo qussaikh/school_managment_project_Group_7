@@ -1,7 +1,9 @@
 package com.vaaq.school.webSecurity.user;
 
+import com.vaaq.school.webSecurity.token.TokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository repository;
+    private final TokenRepository tokenRepository;
+
     public void changePassword(ChangePasswordRequest request, Principal connectedUser) {
 
         var user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
@@ -32,4 +36,50 @@ public class UserService {
         // save the new password
         repository.save(user);
     }
+
+    public User updateUser(String userEmail, User request) {
+        // Hämta användaren från repository med e-postadressen.
+        User user = repository.findByEmail(userEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("Användaren hittades inte: " + userEmail));
+
+        // Uppdatera användarens information med den nya informationen från förfrågan.
+        user.setFirstname(request.getFirstname());
+        user.setLastname(request.getLastname());
+        user.setEmail(request.getEmail());
+
+        // Kontrollera om lösenordet ska uppdateras och kryptera det nya lösenordet.
+        if (request.getPassword() != null && !request.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
+        // Spara ändringarna i användarrepositoryn och returnera den uppdaterade användaren.
+        return repository.save(user);
+    }
+
+    public void deleteUser(String userEmail) {
+        // Hämta användaren från repository med e-postadressen.
+        User user = repository.findByEmail(userEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("Användaren hittades inte: " + userEmail));
+
+        int userId =user.getId();
+
+        // Ta bort alla relaterade rader i token-tabellen för den användaren.
+        tokenRepository.deleteById(userId);
+
+        // Ta bort användaren från repositoryn.
+        repository.delete(user);
+    }
+
+    // Ändrar en användares roll från användare till administratör.
+    public void promoteToAdmin(String userEmail) {
+        // Hämta användaren från repository med e-postadressen.
+        User user = repository.findByEmail(userEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("Användaren hittades inte: " + userEmail));
+
+        // Ändra användarens roll till ADMIN.
+        user.setRole(Role.ADMIN);
+
+        // Spara ändringarna i användarrepositoryn.
+        repository.save(user);
+    }
+
 }

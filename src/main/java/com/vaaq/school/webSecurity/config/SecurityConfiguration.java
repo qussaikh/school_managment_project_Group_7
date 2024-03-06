@@ -29,7 +29,6 @@ public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = {
             "/api/v1/auth/userRegister/**",
             "/api/v1/auth/authenticate/**",
-            //"/api/v1/auth/promote-to-admin",
             "/course/getCourses"
             };
 
@@ -53,14 +52,18 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
+                                .requestMatchers(POST, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
+                                .requestMatchers(PATCH, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                                .requestMatchers(PUT, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
+                                .requestMatchers(DELETE, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
+                                .requestMatchers(POST, "/api/v1/auth/**").hasRole(Role.ADMIN.name())
+
                                 .requestMatchers(GET, "/course/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(POST, "/student/save/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(POST, "/course/save/**").hasAnyRole(Role.ADMIN.name())
-                                .requestMatchers(POST, "/promote-to-admin/").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(PUT, "/student/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(DELETE, "/student/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(DELETE, "/course/**").hasAnyRole(Role.ADMIN.name())
-
                                 .anyRequest()
                                 .authenticated()
                 )

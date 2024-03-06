@@ -1,5 +1,6 @@
 package com.vaaq.school.webSecurity.auth;
 
+import com.vaaq.school.webSecurity.user.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -48,17 +49,6 @@ public class AuthenticationController {
   ) {
     // Delegate the authentication request to the AuthenticationService and return the response.
     return ResponseEntity.ok(service.authenticate(request));
-  }
-
-  // Endpoint för att ändra en användares roll till administratör.
-  @PostMapping("/promote-to-admin")
-  public ResponseEntity<String> promoteToAdmin(@RequestBody Map<String, String> request) {
-    String email = request.get("email");
-    if (email == null || email.isEmpty()) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("E-postadressen är obligatorisk.");
-    }
-    service.promoteToAdmin(email);
-    return ResponseEntity.status(HttpStatus.OK).body("Användarens roll har uppdaterats till administratör.");
   }
 
   // Endpoint for refreshing authentication tokens.

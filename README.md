@@ -59,6 +59,27 @@ Creates a new User and returns the new object.
 "password": "newPassword"
 }
 
+### Update User by admin
+* URL Params
+  UPDATE http://localhost:8080/api/v1/users/update/{userEmail}
+* Headers
+  Content-Type: application/json
+* Data Params
+
+{
+"firstname": "QUSSAI",
+"lastname": "KHALIL",
+"email":  "qussai@mail.com",
+"password": "54321"
+}
+
+### Delete User by admin
+* URL Params
+  DELETE http://localhost:8080/api/v1/users/{userEmail}
+* Headers
+  Content-Type: application/json
+* Data Params
+
 
 ### Add student
 * URL Params

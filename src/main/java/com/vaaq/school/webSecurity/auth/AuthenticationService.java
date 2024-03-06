@@ -175,18 +175,5 @@ public class AuthenticationService {
     }
   }
 
-  // Ändrar en användares roll från användare till administratör.
-    @Transactional
-    public void promoteToAdmin(String userEmail) {
-    // Hämta användaren från repository med e-postadressen.
-    User user = repository.findByEmail(userEmail)
-            .orElseThrow(() -> new UsernameNotFoundException("Användaren hittades inte: " + userEmail));
-
-    // Ändra användarens roll till ADMIN.
-    user.setRole(Role.ADMIN);
-
-    // Spara ändringarna i användarrepositoryn.
-    repository.save(user);
-  }
 
 }
