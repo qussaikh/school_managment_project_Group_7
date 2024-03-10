@@ -1,6 +1,7 @@
 package com.vaaq.school.webSecurity.user;
 
 import com.vaaq.school.webSecurity.token.TokenRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -55,15 +56,14 @@ public class UserService {
         return repository.save(user);
     }
 
+    @Transactional
     public void deleteUser(String userEmail) {
         // Hämta användaren från repository med e-postadressen.
         User user = repository.findByEmail(userEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("Användaren hittades inte: " + userEmail));
 
-        int userId =user.getId();
-
         // Ta bort alla relaterade rader i token-tabellen för den användaren.
-        tokenRepository.deleteById(userId);
+        tokenRepository.deleteByUser(user);
 
         // Ta bort användaren från repositoryn.
         repository.delete(user);

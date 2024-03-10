@@ -1,4 +1,4 @@
- Spring boot school managment project Group 7
+ # Spring boot school management project Group 7
 
 ## Api controller
 
@@ -75,7 +75,7 @@ Creates a new User and returns the new object.
 
 ### Delete User by admin
 * URL Params
-  DELETE http://localhost:8080/api/v1/users/{userEmail}
+  DELETE http://localhost:8080/api/v1/users/delete/{userEmail}
 * Headers
   Content-Type: application/json
 * Data Params
