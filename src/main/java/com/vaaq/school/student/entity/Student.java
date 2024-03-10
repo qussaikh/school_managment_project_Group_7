@@ -27,7 +27,7 @@ public class Student {
     private String dept;
 
   
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "STUDENT_COURSE_TABLE",
             joinColumns = @JoinColumn(name = "stud_id"),
             inverseJoinColumns = @JoinColumn(name = "cours_id")
