@@ -79,7 +79,7 @@ Creates a new User and returns the new object.
 * Headers
   Content-Type: application/json
 * Data Params
-
+- NO BODY
 
 ### Add student
 * URL Params
@@ -115,7 +115,7 @@ Creates a new User and returns the new object.
   Content-Type: application/json
 * Data Params
   none 
-
+- NO BODY
 
 ### Get Student details
 * URL Params
@@ -123,12 +123,13 @@ Creates a new User and returns the new object.
 * Headers
   Content-Type: application/json
 * Data Params
-
+- NO BODY
 {
 "studentId": 1,
 "name": "Mousa",
 "age": 33,
 "dept": "java spring JPA dev ",
+
 "courses": 1
 }
 
@@ -140,12 +141,21 @@ Creates a new User and returns the new object.
   Content-Type: application/json
 * Data Params
 
+- NO BODY
+
 ### Update student
 * URL Params
   PUT http://localhost:8080/student/update/{stuId}
 * Headers
   Content-Type: application/json
 * Data Params
+
+ {
+ "name": "vikrams",
+ "age": 11,
+ "dept": "javas"
+        
+    }
 
 ### Delete Student 
 * URL Params
@@ -154,12 +164,16 @@ Creates a new User and returns the new object.
   Content-Type: application/json
 * Data Params
 
+- NO BODY
+
 ### Get course by id
 * URL Params
   GET http://localhost:8080/course/getCourse/{courseId}
 * Headers
   Content-Type: application/json
 * Data Params
+
+- NO BODY
 
 ### Get all Courses
 * URL Params
@@ -168,6 +182,8 @@ Creates a new User and returns the new object.
   Content-Type: application/json
 * Data Params
 
+- NO BODY
+
 ### Update course
 * URL Params
   PUT http://localhost:8080/course/update/{courseId}
@@ -175,9 +191,18 @@ Creates a new User and returns the new object.
   Content-Type: application/json
 * Data Params
 
+{  "title": "spring security ",
+ "abbreviation": "SSV",
+ "modules": 11,
+ "fee": 500.0
+                }
+
 ### Delete course
 * URL Params
   DELETE http://localhost:8080/course/delete/{courseId}
 * Headers
   Content-Type: application/json
 * Data Params
+  
+- NO BODY
+  
