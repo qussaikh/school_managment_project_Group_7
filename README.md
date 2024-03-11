@@ -1,5 +1,11 @@
  # Spring boot school management project Group 7
 
+ Admin login: 
+ {
+    "email":  "admin@mail.com",
+    "password": "54321"
+}
+
 ## Api controller
 
 ### Register Admin
