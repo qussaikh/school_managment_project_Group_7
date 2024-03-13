@@ -33,6 +33,17 @@ public class StudentService {
         }
     }
 
+    public Student updateStudent(Long studentId, Student updatedStudent) {
+        Student existingStudent = studentRepository.findById(studentId).orElse(null);
+        if (existingStudent != null) {
+            existingStudent.setName(updatedStudent.getName());
+            existingStudent.setAge(updatedStudent.getAge());
+            existingStudent.setDept(updatedStudent.getDept());
+            return studentRepository.save(existingStudent);
+        }
+        return null;
+    }
+
     public void deleteStudent(Long studentId) {
         studentRepository.deleteById(studentId);
     }

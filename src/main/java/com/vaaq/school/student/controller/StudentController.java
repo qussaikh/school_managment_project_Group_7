@@ -46,4 +46,18 @@ public class StudentController {
     ){
         return studentService.assignCourseToStudent(stuId, courseId);
     }
+
+
+    @PutMapping("/update/{stuId}")
+    public ResponseEntity<Student> updateStudent(
+            @PathVariable Long stuId,
+            @RequestBody Student updatedStudent
+    ) {
+        Student student = studentService.updateStudent(stuId, updatedStudent);
+        if (student != null) {
+            return new ResponseEntity<>(student, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
