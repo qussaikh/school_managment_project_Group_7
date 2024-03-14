@@ -87,6 +87,18 @@ Creates a new User and returns the new object.
 * Data Params
 - NO BODY
 
+### Convert the USER to ADMIN by Admin token
+* URL Params
+  POST http://localhost:8080/api/v1/users/promoteToAdmin
+* Headers
+  Content-Type: application/json
+* Data Params
+
+{
+"email":  "qussai@mail.com"
+}
+
+
 ### Add student
 * URL Params
   POST http://localhost:8080/student/save
