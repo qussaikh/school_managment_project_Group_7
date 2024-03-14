@@ -1,28 +1,28 @@
  # Spring boot school management project Group 7
 
+You can log only in as an admin from this Account, 
+because no one can create an account as an admin, 
+but the admin can convert the USER to an ADMIN.  
  Admin login: 
  {
     "email":  "admin@mail.com",
     "password": "54321"
 }
+- Domain : school-mangement.eu-north-1.elasticbeanstalk.com 
 
-## Api controller
-
-### Register Admin
-Creates a new Admin and returns the new object.
+Example to log in 
 * URL Params
-  POST http://localhost:8080/api/v1/auth/adminRegister
+  POST http://school-mangement.eu-north-1.elasticbeanstalk.com:8080/api/v1/auth/authenticate
 * Headers
-
-Content-Type: application/json
+  Content-Type: application/json
 * Data Params
+ {
+  "email":  "admin@mail.com",
+  "password": "54321"
+  }
 
-{
-"firstname": "Qussai",
-"lastname": "Khalil",
-"email":  "qussai@mail.com",
-"password": "password"
-}
+  
+## Api controller
 
 ### Register User
 Creates a new User and returns the new object.
