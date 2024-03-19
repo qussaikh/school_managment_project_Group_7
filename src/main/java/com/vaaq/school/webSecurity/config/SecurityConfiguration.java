@@ -29,7 +29,10 @@ public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = {
             "/api/v1/auth/userRegister/**",
             "/api/v1/auth/authenticate/**",
-            "/course/getCourses"
+            "/course/getCourse/**",
+            "/course/getCourses",
+            "/student/getStudent/**",
+            "/student/getStudents"
             };
 
     // JWT authentication filter.
@@ -58,10 +61,11 @@ public class SecurityConfiguration {
                                 .requestMatchers(DELETE, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(POST, "/api/v1/auth/**").hasRole(Role.ADMIN.name())
 
-                                .requestMatchers(GET, "/course/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                                //.requestMatchers(GET, "/course/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(POST, "/student/save/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(POST, "/course/save/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(PUT, "/student/**").hasAnyRole(Role.ADMIN.name())
+                                .requestMatchers(PUT, "/course/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(DELETE, "/student/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(DELETE, "/course/**").hasAnyRole(Role.ADMIN.name())
                                 .anyRequest()

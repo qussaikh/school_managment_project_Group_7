@@ -63,6 +63,4 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body("Användarens roll har uppdaterats till administratör.");
     }
 
-
-
 }

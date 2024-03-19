@@ -32,7 +32,6 @@ public class Student {
             joinColumns = @JoinColumn(name = "stud_id"),
             inverseJoinColumns = @JoinColumn(name = "cours_id")
 
-
     )
     //@JsonManagedReference
     private Set<Course> courses;
