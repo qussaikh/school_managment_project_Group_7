@@ -39,7 +39,7 @@ public class StudentController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping("/{stuId}/course/{courseId}")
+    @PatchMapping("/{stuId}/course/{courseId}")
     public Student assignCourseToStudent(
             @PathVariable Long stuId,
             @PathVariable Long courseId

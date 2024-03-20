@@ -66,6 +66,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(POST, "/course/save/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(PUT, "/student/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(PUT, "/course/**").hasAnyRole(Role.ADMIN.name())
+                                .requestMatchers(PATCH, "/student/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(DELETE, "/student/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(DELETE, "/course/**").hasAnyRole(Role.ADMIN.name())
                                 .anyRequest()
