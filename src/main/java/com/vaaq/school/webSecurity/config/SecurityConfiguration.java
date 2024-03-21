@@ -29,10 +29,10 @@ public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = {
             "/api/v1/auth/userRegister/**",
             "/api/v1/auth/authenticate/**",
-            "/course/getCourse/**",
-            "/course/getCourses",
-            "/student/getStudent/**",
-            "/student/getStudents"
+//            "/course/getCourse/**",
+//            "/course/getCourses",
+//            "/student/getStudent/**",
+//            "/student/getStudents"
             };
 
     // JWT authentication filter.
@@ -55,6 +55,12 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
+                                .requestMatchers(GET, "/course/getCourse/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                                .requestMatchers(GET, "/course/getCourses").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                                .requestMatchers(GET, "/student/getStudent/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                                .requestMatchers(GET, "/student/getStudents").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+
+
                                 .requestMatchers(POST, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(PATCH, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(PUT, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())

@@ -24,12 +24,8 @@ public class CourseService {
         courseRepository.save(courseObj);
     }
 
-    public List<Course> getCourseDetails(Long courseId) {
-        if (null != courseId) {
-            return courseRepository.findAllByCourseId(courseId);
-        } else {
-            return courseRepository.findAll();
-        }
+    public Course getCourseDetails(Long courseId) {
+       return courseRepository.findAllByCourseId(courseId);
     }
 
     public Course updateCourse(Long courseId, Course updatedCourse) {

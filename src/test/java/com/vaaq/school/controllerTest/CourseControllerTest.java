@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaaq.school.course.controller.CourseController;
 import com.vaaq.school.course.entity.Course;
 import com.vaaq.school.course.service.CourseService;
+import com.vaaq.school.student.entity.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,10 +18,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -60,13 +61,11 @@ public class CourseControllerTest {
     @Test
     void getCourse() throws Exception {
         Long courseId = 1L;
-        Course course = new Course(courseId, "Java Basics", "JAVA", 10, 500.0, null);
-        given(courseService.getCourseDetails(courseId)).willReturn(List.of(course));
+        Course course = new Course();
+        when(courseService.getCourseDetails(courseId)).thenReturn((Course)course) ;
 
-        mockMvc.perform(get("/course/getCourse/{courseId}", courseId))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].courseId").value(courseId))
-                .andExpect(jsonPath("$[0].title").value("Java Basics"));
+        Course response = courseController.getCourse(courseId);
+        assertEquals(course, response);
     }
 
     @Test

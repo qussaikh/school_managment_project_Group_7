@@ -24,8 +24,9 @@ public class CourseController {
     }
 
     @GetMapping(value = {"/getCourse/{courseId}"})
-    public List<Course> getCourse(@PathVariable(required = false) Long courseId) {
-        return courseService.getCourseDetails(courseId);
+    public Course getCourse(@PathVariable(required = false) Long courseId) {
+         Course course = courseService.getCourseDetails(courseId);
+        return ResponseEntity.ok(course).getBody();
     }
 
     @GetMapping(value = {"/getCourses"})

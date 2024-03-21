@@ -45,10 +45,10 @@ public class StudentControllerTest {
     @Test
     public void testGetStudent() {
         Long studentId = 1L;
-        List<Student> students = Arrays.asList(new Student());
-        when(studentService.getStudentDetails(studentId)).thenReturn(students);
+        Student students = new Student();
+        when(studentService.getStudentDetails(studentId)).thenReturn((Student) students);
 
-        List<Student> response = studentController.getStudent(studentId);
+        Student response = studentController.getStudent(studentId);
         assertEquals(students, response);
     }
 

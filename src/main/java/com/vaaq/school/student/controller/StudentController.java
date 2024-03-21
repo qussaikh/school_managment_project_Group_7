@@ -24,8 +24,9 @@ public class StudentController {
     }
 
     @GetMapping("/getStudent/{stuId}")
-    public List<Student> getStudent(@PathVariable(required = false) Long stuId) {
-        return studentService.getStudentDetails(stuId);
+    public Student getStudent(@PathVariable(required = false) Long stuId) {
+         Student student = studentService.getStudentDetails(stuId);
+        return ResponseEntity.ok(student).getBody();
     }
 
     @GetMapping("/getStudents")

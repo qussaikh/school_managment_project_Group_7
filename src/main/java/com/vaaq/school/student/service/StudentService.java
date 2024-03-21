@@ -25,13 +25,8 @@ public class StudentService {
         studentRepository.save(empObj);
     }
 
-    public List<Student> getStudentDetails(Long studentId) {
-
-        if (null != studentId) {
-            return studentRepository.findAllByStudentId(studentId);
-        } else {
-            return studentRepository.findAll();
-        }
+    public Student getStudentDetails(Long studentId) {
+        return studentRepository.findByStudentId(studentId);
     }
 
 
