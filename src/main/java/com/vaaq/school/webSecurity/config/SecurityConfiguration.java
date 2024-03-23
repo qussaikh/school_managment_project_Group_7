@@ -60,7 +60,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(GET, "/student/getStudent/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(GET, "/student/getStudents").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
 
-
+                                .requestMatchers(GET, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(POST, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(PATCH, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                                 .requestMatchers(PUT, "/api/v1/users/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())

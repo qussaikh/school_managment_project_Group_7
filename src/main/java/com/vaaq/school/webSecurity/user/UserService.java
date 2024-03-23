@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 import java.security.Principal;
 
 @Service
@@ -36,6 +37,42 @@ public class UserService {
 
         // save the new password
         repository.save(user);
+    }
+
+
+    // It's not ready
+    public String getUsers() {
+        User user = (User) repository.findAll();
+
+        StringBuilder jsonBuilder = new StringBuilder();
+        jsonBuilder.append("{");
+        jsonBuilder.append("\"firstname\": \"" + user.getFirstname() + "\",");
+        jsonBuilder.append("\"lastname\": \"" + user.getLastname() + "\",");
+        jsonBuilder.append("\"email\": \"" + user.getEmail() + "\",");
+        jsonBuilder.append("\"password\": \"" + user.getPassword() + "\",");
+        jsonBuilder.append("\"role\": \"" + user.getRole() + "\"");
+        jsonBuilder.append("}");
+
+        return jsonBuilder.toString();
+
+    }
+
+    public String findUserByEmail(String email) {
+        User user = repository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User with id: " + email + " doesn't exist"));
+
+
+        StringBuilder jsonBuilder = new StringBuilder();
+        jsonBuilder.append("{");
+        jsonBuilder.append("\"firstname\": \"" + user.getFirstname() + "\",");
+        jsonBuilder.append("\"lastname\": \"" + user.getLastname() + "\",");
+        jsonBuilder.append("\"email\": \"" + user.getEmail() + "\",");
+        jsonBuilder.append("\"password\": \"" + user.getPassword() + "\",");
+        jsonBuilder.append("\"role\": \"" + user.getRole() + "\"");
+        jsonBuilder.append("}");
+
+        return jsonBuilder.toString();
+
     }
 
     public User updateUser(String userEmail, User request) {

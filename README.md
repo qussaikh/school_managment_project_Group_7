@@ -87,6 +87,16 @@ Creates a new User and returns the new object.
 -------------------------------------------------------------
 ### (ADMIN Access)
 
+### Get User by email
+* URL Params
+  Get http://localhost:8080/api/v1/users/getUser/{userEmail}
+* Headers
+  Content-Type: application/json
+* Authorization: Bearer {{auth-token}}
+* Data Params
+  
+
+
 ### Delete User 
 * URL Params
   DELETE http://localhost:8080/api/v1/users/delete/{userEmail}

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -44,6 +45,20 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Något gick fel"); // Generiskt fel
         }
     }
+    @GetMapping("/getUser/{userEmail}")
+    public ResponseEntity<String> getUser(@PathVariable String userEmail) {
+         String user = service.findUserByEmail(userEmail);
+         return ResponseEntity.ok().body(user);
+    }
+
+
+    // It's not ready
+    @GetMapping("/getUsers")
+    public ResponseEntity<List<User>> findAllUsers() {
+        service.getUsers();
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/delete/{userEmail}")
     public ResponseEntity<String> deleteUser(@PathVariable String userEmail) {
