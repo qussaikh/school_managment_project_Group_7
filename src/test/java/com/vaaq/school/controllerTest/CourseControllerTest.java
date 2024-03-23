@@ -49,7 +49,7 @@ public class CourseControllerTest {
 
 
 
-        mockMvc.perform(post("/course/save")
+        mockMvc.perform(post("/api/v1/course/save")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(course)))
                 .andExpect(status().isCreated());
@@ -75,7 +75,7 @@ public class CourseControllerTest {
         List<Course> allCourses = Arrays.asList(course1, course2);
         given(courseService.getAllCourse()).willReturn(allCourses);
 
-        mockMvc.perform(get("/course/getCourses"))
+        mockMvc.perform(get("/api/v1/course/getCourses"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(allCourses.size()))
                 .andExpect(jsonPath("$[0].title").value("Java Basics"))
@@ -85,7 +85,7 @@ public class CourseControllerTest {
     @Test
     void removeCourse() throws Exception {
         Long courseId = 1L;
-        mockMvc.perform(delete("/course/delete/{courseId}", courseId))
+        mockMvc.perform(delete("/api/v1/course/delete/{courseId}", courseId))
                 .andExpect(status().isOk());
     }
 }
