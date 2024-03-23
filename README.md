@@ -150,7 +150,7 @@ Creates a new User and returns the new object.
 }
 
   
-### Update course
+### Update course 
 * URL Params
   PUT http://localhost:8080/course/update/{courseId}
 * Headers
@@ -163,6 +163,7 @@ Creates a new User and returns the new object.
 "modules": 11,
 "fee": 500.0
 }
+
 
 ### Delete course
 * URL Params
